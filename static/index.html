@@ -116,7 +116,7 @@
             formData.append('template', fileInput.files[0]);
 
             try {
-                const response = await fetch('http://localhost:8000/generate-presentation/', {
+                const response = await fetch('http://localhost:63065/generate-presentation/', {
                     method: 'POST',
                     body: formData
                 });

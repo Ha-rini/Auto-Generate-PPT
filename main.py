@@ -6,11 +6,17 @@ from services.pptx_generator import generate_presentation # Corrected import pat
 import os
 from dotenv import load_dotenv
 from utils.file_processor import save_file, remove_file # Import utility functions
+from fastapi.staticfiles import StaticFiles
+
+
+
 
 # Load environment variables from .env file
 load_dotenv()
 
 app = FastAPI()
+
+
 
 # CORS middleware to allow frontend requests
 app.add_middleware(
@@ -20,7 +26,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
 # Create an uploads directory if it doesn't exist
 if not os.path.exists("uploads"):
     os.makedirs("uploads")
